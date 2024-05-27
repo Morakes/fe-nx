@@ -1,0 +1,9 @@
+{
+  "name": "vue-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/vue-ui/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project vue-ui --web",
+  "targets": {}
+}
