@@ -50,7 +50,11 @@
       "unitTestRunner": "vitest",
       "e2eTestRunner": "none"
     },
-    "@nx/react": { "library": { "unitTestRunner": "none" } }
+    "@nx/react": {
+      "library": {
+        "unitTestRunner": "none"
+      }
+    }
   },
   "targetDefaults": {
     "@nx/vite:build": {
@@ -60,7 +64,7 @@
     }
   },
   "tasksRunnerOptions": {
-    "default": {
-    }
-  }
+    "default": {}
+  },
+  "nxCloudAccessToken": "MTQ4NTA2MGUtZTQ4OS00ZDkzLWE2YzAtOWFkYzVmZTc2NmM0fHJlYWQtd3JpdGU="
 }
