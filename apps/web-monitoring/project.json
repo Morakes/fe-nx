@@ -1,0 +1,8 @@
+{
+  "name": "web-monitoring",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/web-monitoring/src",
+  "// targets": "to see all targets run: nx show project web-monitoring --web",
+  "targets": {}
+}
