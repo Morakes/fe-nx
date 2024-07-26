@@ -1,0 +1,60 @@
+// 垂直间距
+$min-margin: 8px;
+$mid-margin: 16px;
+$max-margin: 24px;
+
+// 圆角
+$min-radius: 4px;
+$mid-radius: 8px;
+$max-radius: 12px;
+
+@mixin fx-card {
+  // 样式规则
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.fx-card {
+  :global {
+    .ant-card {
+      border-radius: 8px;
+
+      .ant-card-body {
+        padding: 16px 16px 8px 16px;
+      }
+    }
+  }
+}
+
+.fx-primary-card {
+  @include fx-card;
+
+  :global {
+    .ant-card-head {
+      border-bottom: transparent;
+    }
+
+    .ant-card-head {
+      padding: 0 16px;
+    }
+
+    .ant-card-head-title {
+      position: relative;
+      padding-left: 16px !important;
+
+      &::after {
+        position: absolute;
+        left: 0;
+        top: 50%;
+        content: "";
+        transform: translateY(-50%);
+        width: 6px;
+        border-radius: $min-radius;
+        margin-right: $mid-margin;
+        background: #2e58e4;
+        height: 16px;
+      }
+    }
+  }
+}

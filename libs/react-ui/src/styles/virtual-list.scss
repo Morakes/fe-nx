@@ -1,0 +1,7 @@
+@import './global.scss';
+
+$target_cls: 'virtual-list';
+
+@include cs($target_cls) {
+  height: 100%;
+}

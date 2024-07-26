@@ -1,0 +1,26 @@
+$prefix-cls: 'company';
+
+@mixin cs($names...) {
+  $result-classNames: $prefix-cls;
+  @each $name in $names {
+    $result-classNames: '#{$result-classNames}-#{$name}';
+  }
+  .#{$result-classNames} {
+    @content;
+  }
+}
+
+@mixin scrollbar {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgb(115, 123, 127);
+    border-radius: 3px;
+  }
+}
+
+@mixin cssVar {
+  --primary-color: #1677ff;
+}
