@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@fe-nx/plugin": ["libs/plugin/src/index.ts"],
       "@org/mylib": ["libs/mylib/src/index.ts"],
       "@org/react-ui": ["libs/react-ui/src/index.ts"],
       "@org/util": ["libs/util/src/index.ts"],

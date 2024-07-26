@@ -1,0 +1,207 @@
+@import '../../styles/global.scss';
+
+$target_cls: 'cascader';
+
+@include cs($target_cls, 'css-var') {
+  --list-item-height: 32px;
+  --section-panel-height: 200px;
+  --check-panel-width: 150px;
+  --border-color: rgba(5, 5, 5, 0.06);
+  --wrap-padding: 8px 12px;
+  --check-item-bg: #bae7ff;
+  @include cssVar;
+}
+
+@include cs($target_cls, 'panel') {
+  width: 100%;
+  overflow: hidden;
+  padding: var(--wrap-padding);
+  box-sizing: border-box;
+  ul, li {
+    margin: 0;
+    padding: 0;
+  }
+  @include cs($target_cls, 'search') {
+    position: relative;
+    width: 100%;
+    margin-bottom: 12px;
+    &-panel {
+      position: absolute;
+      top: 100%;
+      width: 100%;
+      height: 200px;
+      box-shadow: 0 3px 6px -4px #0000001f, 0 6px 16px #00000014, 0 9px 28px 8px #0000000d;
+      overflow-y: auto;
+      overflow-x: hidden;
+      background-color: #fff;
+      z-index: 100;
+      transform: translateY(12px);
+      @include cs($target_cls, 'search-item') {
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        padding: 5px 12px;
+        cursor: pointer;
+        transition: all 0.2s;
+        border-radius: 4px;
+        border-bottom: none;
+        &:hover {
+          background: rgba(0, 0, 0, 0.04);
+        }
+        @include cs($target_cls, 'search-label') {
+          flex: 1;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          margin-left: 12px;
+        }
+      }
+      @include cs($target_cls, 'search-item-checked') {
+        background-color: var(--check-item-bg);
+        &:hover {
+          background-color: var(--check-item-bg);
+        }
+      }
+    }
+  }
+  @include cs($target_cls, 'panel-content') {
+    width: 100%;
+    display: flex;
+    @include cs($target_cls, 'sections') {
+      @include scrollbar;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: flex-start;
+      overflow-x: auto;
+    }
+    @include cs($target_cls, 'group') {
+      box-sizing: border-box;
+      position: relative;
+      flex-shrink: 0;
+      flex-grow: 1;
+      flex-basis: 50%;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      border: 1px solid var(--border-color);
+      border-left: none;
+      &:first-child {
+        border-left: 1px solid var(--border-color);;
+      }
+      &-name {
+        box-sizing: border-box;
+        height: 38px;
+        line-height: 38px;
+        padding: 0 14px;
+        border-bottom: 1px solid var(--border-color);
+      }
+      @include cs($target_cls, 'virtual-section') {
+        overflow: hidden;
+        padding: 0;
+      }
+      @include cs($target_cls, 'section') {
+        @include scrollbar;
+        height: var(--section-panel-height);
+        overflow-y: auto;
+        overflow-x: hidden;
+        vertical-align: top;
+        // border: 1px solid var(--border-color);
+        border-top: none;
+        box-sizing: border-box;
+        &-row {
+          overflow: hidden;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          display: flex;
+          flex-wrap: nowrap;
+          align-items: center;
+          padding: 5px 12px;
+          height: var(--list-item-height);
+          cursor: pointer;
+          transition: all 0.2s;
+          border-radius: 4px;
+          border-bottom: none;
+          box-sizing: border-box;
+          &:hover {
+            background: rgba(0, 0, 0, 0.04);
+          }
+          @include cs($target_cls, 'section-checkbox') {
+            margin-right: 8px;
+          }
+          @include cs($target_cls, 'section-content') {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            @include cs($target_cls, 'section-label') {
+              flex: 1;
+              overflow: hidden;
+              text-overflow: ellipsis;
+              white-space: nowrap;
+            }
+            @include cs($target_cls, 'section-next') {
+              color: #575757;
+            }
+          }
+        }
+        &-row-checked {
+          background-color: var(--check-item-bg);
+          &:hover {
+            background-color: var(--check-item-bg);
+          }
+        }
+      }
+    }
+    @include cs($target_cls, 'check-panel') {
+      width: var(--check-panel-width);
+      margin-left: 14px;
+      border: 1px solid var(--border-color);
+      box-sizing: border-box;
+      &-header {
+        padding: 0 14px;
+        border-bottom: 1px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 38px;
+        line-height: 38px;
+        font-size: 12px;
+        @include cs($target_cls, 'check-clear') {
+          cursor: pointer;
+          color: var(--primary-color);
+        }
+      }
+      &-body {
+        @include scrollbar;
+        display: flex;
+        flex-direction: column;
+        height: var(--section-panel-height);
+        overflow-y: auto;
+        overflow-x: hidden;
+        @include cs($target_cls, 'check-tag') {
+          display: flex;
+          margin-bottom: 6px;
+          margin-right: 0;
+          @include cs($target_cls, 'check-tag-label') {
+            flex: 1;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+          }
+        }
+      }
+    }
+  }
+}
+
+@include cs($target_cls, 'virtual-list') {
+  @include scrollbar;
+  height: var(--section-panel-height);
+  padding: 0 8px;
+  box-sizing: border-box;
+}

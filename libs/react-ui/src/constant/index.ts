@@ -1,0 +1,1 @@
+export const PREFIX_CLASS_NAMES = 'company';

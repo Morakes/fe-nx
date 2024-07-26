@@ -4,9 +4,10 @@ import vue from '@vitejs/plugin-vue';
 import dts from 'vite-plugin-dts';
 import * as path from 'path';
 import { nxViteTsPaths } from '@nx/vite/plugins/nx-tsconfig-paths.plugin';
+import { VitePluginCopyFile } from "../plugin/src"
 import fs from 'fs';
-import { VitePluginMovingFile } from './plugin/vite-plugin-moving-file'
 
+const outputDir = path.resolve(__dirname, '../../dist/libs/vue-ui');
 const componentsDir = path.resolve(__dirname, 'src/lib');
 const entryPoints: Record<string, string> = {};
 
@@ -23,14 +24,20 @@ export default defineConfig({
     vue(),
     nxViteTsPaths(),
     dts({
-      entryRoot: 'src/lib',
+      entryRoot: 'src',
       tsconfigPath: path.join(__dirname, 'tsconfig.lib.json'),
-      outDir: [path.resolve(__dirname, '../../dist/libs/vue-ui/es'), path.resolve(__dirname, '../../dist/libs/vue-ui/cjs')]
+      outDir: [path.resolve(outputDir, 'es'), path.resolve(outputDir, 'cjs')]
     }),
-    VitePluginMovingFile({
-      target: path.resolve(__dirname, '../../dist/libs/vue-ui/README.md'),
-      source: path.resolve(__dirname, './README.md')
-    }),
+    VitePluginCopyFile([
+      {
+        target: path.resolve(outputDir, 'README.md'),
+        source: path.resolve(__dirname, 'README.md')
+      },
+      {
+        target: path.resolve(outputDir, 'package.json'),
+        source: path.resolve(__dirname, 'package.json')
+      }
+    ]),
   ],
   build: {
     lib: {
@@ -56,9 +63,10 @@ export default defineConfig({
             return 'vendor'
           }
         },
-        dir: `../../dist/libs/vue-ui/`
+        exports: 'named',
+        dir: outputDir
       })),
-      external: ['vue']
+      external: ['vue', 'ant-design-vue', 'vuedraggable']
     }
   },
 });

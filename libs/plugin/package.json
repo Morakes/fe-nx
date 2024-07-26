@@ -1,5 +1,5 @@
 {
-  "name": "@fe-nx/utils",
+  "name": "@fe-nx/plugin",
   "version": "0.0.1",
   "dependencies": {},
   "main": "./index.js",
